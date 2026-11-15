@@ -101,22 +101,51 @@ const projects = [
       "A simple application that allows users to add and manage daily tasks.",
     category: "js",
   },
+
+  {
+    title: "RentHub - Rental Management App",
+    description:
+      "A mobile application designed to help users discover rental properties, explore available listings and connect with property owners.",
+    category: "mobile",
+  },
+  {
+    title: "Employee Workflow Optimization Dashboard",
+    description:
+      "A responsive dashboard built with React.js to improve employee task management, visualise data and streamline workflows.",
+    category: "js",
+  },
 ];
 
 // 5. Project filtering and rendering
 const projectList = document.getElementById("project-list");
 const projectCount = document.getElementById("project-count");
 const filterButtons = document.querySelectorAll(".filter-btn");
+const projectSearch = document.getElementById("project-search");
 
-function displayProjects(category = "all") {
+let activeCategory = "all";
+
+function displayProjects(category = activeCategory) {
   if (!projectList) return;
+
+  activeCategory = category;
+
+  const searchTerm = projectSearch
+    ? projectSearch.value.trim().toLowerCase()
+    : "";
 
   projectList.textContent = "";
 
-  const filteredProjects =
-    category === "all"
-      ? projects
-      : projects.filter((project) => project.category === category);
+  const filteredProjects = projects.filter((project) => {
+    const matchesCategory =
+      activeCategory === "all" || project.category === activeCategory;
+
+    const searchableText =
+      `${project.title} ${project.description}`.toLowerCase();
+
+    const matchesSearch = searchableText.includes(searchTerm);
+
+    return matchesCategory && matchesSearch;
+  });
 
   filteredProjects.forEach((project) => {
     const card = document.createElement("article");
@@ -144,7 +173,8 @@ function displayProjects(category = "all") {
   }
 
   if (filteredProjects.length === 0) {
-    projectList.textContent = "No projects found in this category.";
+    projectList.textContent =
+      "No projects match your search or selected category.";
   }
 }
 
@@ -164,6 +194,12 @@ if (projectList) {
       button.classList.add("active");
     });
   });
+
+  if (projectSearch) {
+    projectSearch.addEventListener("input", () => {
+      displayProjects(activeCategory);
+    });
+  }
 }
 
 // 6. Contact form character counter and validation

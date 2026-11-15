@@ -6,10 +6,10 @@
 
     <meta
       name="description"
-      content="Explore the projects developed by Team Byte."
+      content="Explore the projects developed by PixelPioneers."
     />
 
-    <title>Team Byte | Projects</title>
+    <title>PixelPioneers | Projects</title>
 
     <link rel="stylesheet" href="css/styles.css" />
     <script src="js/script.js" defer></script>
@@ -20,7 +20,7 @@
 
     <header class="site-header">
       <div class="container header-content">
-        <a href="index.html" class="logo">Team Byte</a>
+        <a href="index.html" class="logo">PixelPioneers</a>
 
         <nav class="main-nav" aria-label="Main navigation">
           <button
@@ -68,6 +68,16 @@
 
           <p id="project-count" aria-live="polite">Loading projects...</p>
 
+          <div class="project-search">
+            <label for="project-search">Search projects:</label>
+            <input
+              type="search"
+              id="project-search"
+              placeholder="Search by project name or keyword..."
+              aria-label="Search projects by name or description"
+            />
+          </div>
+
           <div class="project-filters" aria-label="Filter projects">
             <button class="filter-btn active" type="button" data-filter="all">
               All
@@ -84,6 +94,9 @@
             <button class="filter-btn" type="button" data-filter="js">
               JavaScript
             </button>
+            <button class="filter-btn" type="button" data-filter="mobile">
+              Mobile Development
+            </button>
           </div>
 
           <div id="project-list" class="project-grid">
@@ -97,7 +110,7 @@
       <div class="container">
         <p>
           &copy; <span id="current-year">2026</span>
-          Team Byte. All rights reserved.
+          PixelPioneers. All rights reserved.
         </p>
       </div>
     </footer>
